@@ -5,5 +5,5 @@ package lt.ktu.ks.notes;
  */
 public class Tools
 {
-    public static String RestURL = "http://10.0.2.2:3001";
+    public static String RestURL = "http://192.168.0.103:3001";
 }

@@ -85,5 +85,15 @@
         android:layout_below="@+id/coldLimit"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Busena"
+        android:id="@+id/busena"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/buttonOn"
+        android:layout_alignStart="@+id/buttonOn" />
+
 
 </RelativeLayout>
