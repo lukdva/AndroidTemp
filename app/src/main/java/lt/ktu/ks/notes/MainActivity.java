@@ -1,6 +1,7 @@
 package lt.ktu.ks.notes;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +29,7 @@ public class MainActivity extends Activity
     TextView busena;
     private Button onButton;
     private Button offButton;
+    private Button settingsButton;
     private  TextView tempText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class MainActivity extends Activity
         tempText = (TextView)findViewById(R.id.textView2);
         onButton = (Button) findViewById(R.id.buttonOn);
         offButton = (Button) findViewById(R.id.buttonOff);
-
+        settingsButton = (Button) findViewById(R.id.settings);
         //Ijungti mygtukas
 
         onButton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,15 @@ public class MainActivity extends Activity
                 offButton.setEnabled(false);
                 onButton.setEnabled(true);
                 irasytiNustatymus();
+            }
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(),
+                        NustatymaiActivity.class);
+                startActivity(in);
             }
         });
 

@@ -13,16 +13,18 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="number"
+        android:digits="0123456789."
+        android:hint="ColdLimit"
         android:ems="10"
         android:id="@+id/setCold" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="number"
+        android:digits="0123456789."
+        android:hint="NormalLimit"
         android:ems="10"
         android:id="@+id/setNormal" />
 
@@ -30,6 +32,6 @@
         android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/setButton"
+        android:id="@+id/setSettings"
         android:onClick="changeNustatymai"/>
 </LinearLayout>

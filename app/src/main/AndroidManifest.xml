@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UzrasasActivity"
+            android:name=".NustatymaiActivity"
             android:label="@string/title_activity_uzrasas"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
