@@ -27,9 +27,6 @@ public class DataAPI {
         ArrayList<LinkedTreeMap> jsonResponse = null;
         if(response.length() > 1)
         {
-            Gson gson;
-            gson = new Gson();
-
            JSONArray jObject = new JSONArray(response);
             JSONObject object = (JSONObject) jObject.get(0);
             id = (int) object.get("id");
@@ -37,9 +34,9 @@ public class DataAPI {
             t = Double.parseDouble(object.get("temp").toString()) ;
         }
 
-        Temperatura temp = new Temperatura(id, t, date);
 
-        return temp;
+
+        return  new Temperatura(id, t, date);
     }
 
     public static Nustatymai getNustatymai(String RestURL) throws Exception
@@ -52,9 +49,6 @@ public class DataAPI {
         ArrayList<LinkedTreeMap> jsonResponse = null;
         if(response.length() > 1)
         {
-            Gson gson;
-            gson = new Gson();
-
             JSONArray jObject = new JSONArray(response);
             JSONObject object = (JSONObject) jObject.get(0);
             id = (int) object.get("id");
@@ -63,11 +57,15 @@ public class DataAPI {
             status = (int) object.get("status");
         }
 
-        Nustatymai temp = new Nustatymai(id, coldLimit, normalLimit, status);
 
-        return temp;
+
+        return  new Nustatymai(id, coldLimit, normalLimit, status);
     }
 
+    public static void irasytiNustatymus(String RestURL, Nustatymai nust) throws Exception {
+        Nustatymai nusta = new Nustatymai();
+        String response = WebAPI.postNustatymai(RestURL, nust);
+    }
     // get nustatymai
 
    /* public static Uzrasas gautiUzrasa(String RestURL, int ID) throws Exception
