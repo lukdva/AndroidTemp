@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import lt.ktu.ks.notes.Models.Nustatymai;
+
 /**
  * Created by Juozas on 2015-10-03.
  */
@@ -31,7 +33,7 @@ public class WebAPI {
 
 //TODO Get nustatymai
 
-    public static String gautiNustatymai(String URL) throws Exception
+    public static String gautiNustatymus(String URL) throws Exception
     {
         HttpClient client = new DefaultHttpClient();
         HttpGet getRequest = new HttpGet(URL + "/temp/getSettings");

@@ -1,4 +1,4 @@
-package lt.ktu.ks.notes;
+package lt.ktu.ks.notes.Models;
 
 /**
  * Created by Juozas on 2015-10-03.

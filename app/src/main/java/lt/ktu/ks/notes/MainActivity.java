@@ -1,20 +1,17 @@
 package lt.ktu.ks.notes;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
+import lt.ktu.ks.notes.Models.Nustatymai;
+import lt.ktu.ks.notes.Models.Temperatura;
 
 public class MainActivity extends Activity
 {
@@ -53,6 +50,7 @@ public class MainActivity extends Activity
         protected Temperatura doInBackground(String... str_param) {
             String RestURL = str_param[0];
             try {
+                Nustatymai nust = DataAPI.getNustatymai((Tools.RestURL));
                 temp = DataAPI.gautiTemperatura(Tools.RestURL);
             } catch (Exception ex) {
                 Log.e(TAG, ex.toString());
