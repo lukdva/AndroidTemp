@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,16 +24,52 @@ public class MainActivity extends Activity
     ArrayList<HashMap<String, String>> UzrasaiDataList;
     private double coldLimit = 0.0;
     private double normalLimit  = 0.0;
-    int status = 0;
+    int status = 1;
     TextView busena;
+    private Button onButton;
+    private Button offButton;
+    private  TextView tempText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         busena = (TextView)findViewById(R.id.busena);
         busena.setText("Programa pradedama");
+        tempText = (TextView)findViewById(R.id.textView2);
+        onButton = (Button) findViewById(R.id.buttonOn);
+        offButton = (Button) findViewById(R.id.buttonOff);
+
+        //Ijungti mygtukas
+
+        onButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                offButton.setEnabled(true);
+                onButton.setEnabled(false);
+                status = 1;
+                irasytiNustatymus();
+            }
+        });
+
+
+        //Isjunkti mygtukas
+
+        offButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status = 0;
+                offButton.setEnabled(false);
+                onButton.setEnabled(true);
+                irasytiNustatymus();
+            }
+        });
+
 
         gautiNustatymus();
+
+
+        //Scheduler
         final Handler handler = new Handler();
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -39,18 +77,38 @@ public class MainActivity extends Activity
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-                        gautiTemperatura();
+                        if(status == 1) {
+                            gautiTemperatura();
+                        }
+                        else {
+                            nustatytiSustabdyta();
+                        }
+
                     }
                 });
             }
         };
-        timer.schedule(task, 0, 5000);
+        timer.schedule(task, 0, 1000);
 
 
     }
 
+    protected void nustatytiSustabdyta() {
+        tempText.setText("sustabdyta");
+        busena.setText("sustabdyta");
+    }
+   protected void nustatytiMygtukus() {
+       if(status == 1) {
+           offButton.setEnabled(true);
+           onButton.setEnabled(false);
+       }
+       else {
+           offButton.setEnabled(false);
+           onButton.setEnabled(true);
+       }
+   }
+
     protected void rodytiTemperatura(Temperatura temp) {
-        TextView tempText = (TextView)findViewById(R.id.textView2);
         tempText.setText(String.valueOf(temp.temp));
     }
 
@@ -75,7 +133,7 @@ public class MainActivity extends Activity
         this.normalLimit = nust.normalLimit;
         this.coldLimit = nust.coldLimit;
         this.status = nust.status;
-
+        nustatytiMygtukus();
     }
 
     private void gautiNustatymus() {
@@ -84,6 +142,10 @@ public class MainActivity extends Activity
     private void gautiTemperatura()
     {
         new gautiTemperaturaTask().execute(null, null, null);
+    }
+
+    private void irasytiNustatymus() {
+        new irasytiNustatymusTask().execute(null,null,null);
     }
 
 

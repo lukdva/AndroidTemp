@@ -85,7 +85,7 @@ public class WebAPI {
         HttpConnectionParams.setConnectionTimeout(params, 3000);
 
         HttpClient client = new DefaultHttpClient(params);
-        HttpPost postRequest = new HttpPost(URL + "/setSettings");
+        HttpPost postRequest = new HttpPost(URL + "/temp/setSettings");
 
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
         nameValuePair.add(new BasicNameValuePair("coldLimit", String.format("%s", settings.coldLimit)));
